@@ -3,7 +3,7 @@ import http from 'k6/http';
 
 // 1. Cấu hình k6
 // Option là biến đặc biệt, k6 sẽ tự động tìm và đọc biến này ngay khi script bắt đầu chạy để thiết lập cấu hình cho toàn bộ bài test
-const totalConcurrentUsers = 30;
+const totalConcurrentUsers = 2;
 export const options = {
     scenarios: {
         burst_checkout: {
@@ -22,11 +22,11 @@ export const options = {
 export default function () {
     // 2. Chuẩn bị mock data, header, payload nếu có
 
-    // domain chưa fix
+    // Domain chưa fix
     const base_url = 'https://k6-test-api-be.vercel.app';
 
-    // domain fix rồi
-    // const base_url = 'http://localhost:5000';
+    // Domain đã fix rồi
+    // const base_url = 'https://k6-test-api-be-v2.vercel.app';
 
     const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTdiMTI4MjE2MjhmM2FmMDU5OTUzNTgiLCJyb2xlIjoiU0FMRV9TVEFGRiIsInR5cGUiOiJBQ0NFU1MiLCJpYXQiOjE3Njk5MTY3NzksImV4cCI6MTc3MjUwODc3OX0.INwAeHy_eQyK50J7rpmNpDzU7PzIqsIIHXXHD-YsZEs';
     const payload = JSON.stringify({
