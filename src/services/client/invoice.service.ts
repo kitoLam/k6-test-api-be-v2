@@ -88,7 +88,7 @@ class InvoiceClientService {
                 } else {
                     await redisService.descKeyBy(
                         lock.key,
-                        remaining
+                        lock.qty
                     );
                     await redisService.setExpire(lock.key, seconds);
                 }
