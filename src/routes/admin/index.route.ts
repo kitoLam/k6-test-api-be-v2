@@ -1,0 +1,26 @@
+import { Router } from 'express';
+import authRouter from './auth.route';
+import attributeRouter from './attribute.route';
+import categoryRouter from './category.route';
+import productRouter from './product.route';
+import voucherRouter from './voucher.route';
+import invoiceRouter from './invoice.route';
+import customerRouter from './customer.route';
+import orderRouter from './order.route';
+import importProductRouter from './import-product.route';
+import preOrderImportRouter from './pre-order-import.route';
+import staffRouter from './staff.route';
+const router = Router();
+
+router.use('/auth', authRouter);
+router.use('/attributes', attributeRouter);
+router.use('/categories', categoryRouter);
+router.use('/products', productRouter);
+router.use('/vouchers', voucherRouter);
+router.use('/invoices', invoiceRouter);
+router.use('/customers', customerRouter);
+router.use('/orders', orderRouter);
+router.use('/import-products', importProductRouter);
+router.use('/pre-order-imports', preOrderImportRouter);
+router.use('/staff', staffRouter);
+export default router;

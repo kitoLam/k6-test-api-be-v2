@@ -1,0 +1,37 @@
+import { Request, Response, NextFunction } from "express";
+import { ApiError } from "../../errors/apiError/api-error";
+import { JwtError } from "../../errors/jwt/jwt-error";
+import { MulterError } from "multer";
+
+export const errorMiddleware = (
+  err: Error | ApiError | JwtError | MulterError,
+  req: Request,
+  res: Response,
+  _next: NextFunction
+) => {
+  console.error("ERROR:", err);
+  if (err instanceof ApiError) {
+    return res.status(err.statusCode).json({
+      success: false,
+      message: err.message,
+    });
+  }
+  else if(err instanceof JwtError){
+    return res.status(err.statusCode).json({
+      status: "error",
+      message: err.message,
+      code: err.code,
+    });
+  }
+  else if(err instanceof MulterError){
+    return res.status(400).json({
+      success: false,
+      message: "File error",
+      code: err.code,
+    });
+  }
+  res.status(500).json({
+    success: false,
+    message: "Internal server error",
+  });
+};
